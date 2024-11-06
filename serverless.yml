@@ -1,0 +1,16 @@
+service: teste-leve
+
+provider:
+  name: aws 
+  runtime: nodejs14.x 
+
+functions: ${file(./serverless/functions.yaml):functions}
+
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    port: 3000
+    host: 0.0.0.0
+    stage: dev

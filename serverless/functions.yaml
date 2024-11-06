@@ -1,0 +1,19 @@
+functions:
+
+  getSchedule: 
+    handler: dist/container.getSchedule
+    description: 'Ger Schedule'
+    events:
+      - httpApi:
+          path: /api/Schedule
+          method: GET
+
+  postScheduling: 
+    handler: dist/container.postScheduling
+    description: 'Post Scheduling'
+    events:
+      - httpApi:
+          path: /api/Scheduling
+          method: POST
+
+  
