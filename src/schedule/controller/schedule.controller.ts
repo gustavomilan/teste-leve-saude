@@ -32,16 +32,14 @@ export class ScheduleController {
         // Caso existam erros de validação, retornar erro com status 400
         if (validationErrors.length > 0) {
           // Exibirá as mensagens configuradas no DTO
-          return {
-            statusCode: 400,
-            body: {
-              error: {
-                message: validationErrors
-                  .map((err) => Object.values(err.constraints))
-                  .join(', '),
-              },
+          const body = {
+            error: {
+              message: validationErrors
+                .map((err) => Object.values(err.constraints))
+                .join(', '),
             },
           };
+          return createControllerResponse(400, body);
         }
       }
 

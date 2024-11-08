@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/home/bonazzi/leve/leveSaudeTests/teste-leve-saude/src/schedule/controller/schedule.controller.spec.ts">
+    <testCase name="ScheduleController getSchedule should return service data without DTO validation" duration="5"/>
+    <testCase name="ScheduleController getSchedule should return validation errors" duration="4"/>
+    <testCase name="ScheduleController getSchedule should handle CustomError exception" duration="2"/>
+    <testCase name="ScheduleController getSchedule should handle default exception" duration="1"/>
+  </file>
+  <file path="/home/bonazzi/leve/leveSaudeTests/teste-leve-saude/src/utils/response.spec.ts">
+    <testCase name="createControllerResponse should return statusCode and body" duration="3"/>
+    <testCase name="createLambdaResponse should return statusCode and stringfied body" duration="1"/>
+  </file>
+</testExecutions>

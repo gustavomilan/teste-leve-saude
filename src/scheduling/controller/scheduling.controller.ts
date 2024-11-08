@@ -33,14 +33,8 @@ export class SchedulingController {
           .map((error) => Object.values(error.constraints || {}).join(', '))
           .join('; ');
 
-        return {
-          statusCode: 400,
-          body: {
-            error: {
-              message: `Dados passados incorretamente: ${validationMessages}`,
-            },
-          },
-        };
+        const body = { error: { message: validationMessages } };
+        return createControllerResponse(400, body);
       }
 
       // Chamada ao serviço com o DTO validado
