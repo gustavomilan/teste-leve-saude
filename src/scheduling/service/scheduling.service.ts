@@ -7,7 +7,7 @@ export class SchedulingService {
   postScheduling(bodyParameters: CreatingSchedulingDTO): SchedulingResponse {
     // Validação para garantir que o ID do médico foi fornecido
     if (!bodyParameters?.medico_id) {
-      throw new CustomError('ID do médico não fornecido', 400);
+      throw new CustomError('ID do médico não fornecido', 404);
     }
 
     // Busca o médico no mock com base no ID fornecido
@@ -22,7 +22,7 @@ export class SchedulingService {
 
     // Verifica se o horário desejado está disponível para o médico
     if (!medic.horarios_disponiveis.includes(bodyParameters.data_horario)) {
-      throw new CustomError('Horário de agendamento não disponível', 400);
+      throw new CustomError('Horário de agendamento não disponível', 404);
     }
 
     // Cria a resposta para o agendamento bem-sucedido

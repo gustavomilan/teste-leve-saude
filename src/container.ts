@@ -2,7 +2,7 @@ import { ScheduleController } from './schedule/controller/schedule.controller';
 import { SchedulingController } from './scheduling/controller/scheduling.controller';
 import { createLambdaResponse } from './utils/response';
 
-class Container {
+export class Container {
   async getSchedule({ queryStringParameters }) {
     const { body, statusCode } = await new ScheduleController().getSchedule(
       queryStringParameters,

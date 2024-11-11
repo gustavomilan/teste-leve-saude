@@ -1,13 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/home/bonazzi/leve/leveSaudeTests/teste-leve-saude/src/schedule/controller/schedule.controller.spec.ts">
+  <file path="/home/gustavomilan/teste-leve-saude/src/scheduling/controller/schdeuling.controller.spec.ts">
+    <testCase name="SchedulingController postScheduling should handle default exception" duration="13"/>
+    <testCase name="SchedulingController postScheduling should return validantion errors" duration="4"/>
+    <testCase name="SchedulingController postScheduling should return service data" duration="3"/>
+    <testCase name="SchedulingController postScheduling should return CustomError" duration="4"/>
+  </file>
+  <file path="/home/gustavomilan/teste-leve-saude/src/scheduling/service/scheduling.service.spec.ts">
+    <testCase name="SchedulingService postScheduling should return a CustomError when medico_id is not provided" duration="22"/>
+    <testCase name="SchedulingService postScheduling should return a successful scheduling response " duration="4"/>
+    <testCase name="SchedulingService postScheduling should return a CustomError when dont find a medic" duration="4"/>
+    <testCase name="SchedulingService postScheduling should return a CustomError when the scheduling dont exist" duration="3"/>
+  </file>
+  <file path="/home/gustavomilan/teste-leve-saude/src/schedule/controller/schedule.controller.spec.ts">
     <testCase name="ScheduleController getSchedule should return service data without DTO validation" duration="5"/>
     <testCase name="ScheduleController getSchedule should return validation errors" duration="4"/>
-    <testCase name="ScheduleController getSchedule should handle CustomError exception" duration="2"/>
-    <testCase name="ScheduleController getSchedule should handle default exception" duration="1"/>
+    <testCase name="ScheduleController getSchedule should handle CustomError exception" duration="3"/>
+    <testCase name="ScheduleController getSchedule should handle default exception" duration="2"/>
   </file>
-  <file path="/home/bonazzi/leve/leveSaudeTests/teste-leve-saude/src/utils/response.spec.ts">
-    <testCase name="createControllerResponse should return statusCode and body" duration="3"/>
+  <file path="/home/gustavomilan/teste-leve-saude/src/container.spec.ts">
+    <testCase name="Container getSchedule should call ScheduleController.getSchedule with the provided params" duration="9">
+      <failure message="Error: expect(jest.fn()).toHaveBeenCalledTimes(expected)"><![CDATA[Error: expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+Expected number of calls: 1
+Received number of calls: 0
+    at /home/gustavomilan/teste-leve-saude/src/container.spec.ts:32:56
+    at Generator.next (<anonymous>)
+    at fulfilled (/home/gustavomilan/teste-leve-saude/src/container.spec.ts:5:58)]]></failure>
+    </testCase>
+    <testCase name="Container postScheduling should call SchedulingController.postScheduling with the provided params" duration="2">
+      <failure message="SyntaxError: Unexpected token o in JSON at position 1"><![CDATA[SyntaxError: Unexpected token o in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at /home/gustavomilan/teste-leve-saude/src/container.ts:16:60
+    at Generator.next (<anonymous>)
+    at /home/gustavomilan/teste-leve-saude/src/container.ts:8:71
+    at new Promise (<anonymous>)
+    at Object.<anonymous>.__awaiter (/home/gustavomilan/teste-leve-saude/src/container.ts:4:12)
+    at postScheduling (/home/gustavomilan/teste-leve-saude/src/container.ts:26:16)
+    at /home/gustavomilan/teste-leve-saude/src/container.spec.ts:47:50
+    at Generator.next (<anonymous>)
+    at /home/gustavomilan/teste-leve-saude/src/container.spec.ts:8:71
+    at new Promise (<anonymous>)
+    at Object.<anonymous>.__awaiter (/home/gustavomilan/teste-leve-saude/src/container.spec.ts:4:12)
+    at Object.<anonymous> (/home/gustavomilan/teste-leve-saude/src/container.spec.ts:40:99)
+    at Promise.then.completed (/home/gustavomilan/teste-leve-saude/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (/home/gustavomilan/teste-leve-saude/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/home/gustavomilan/teste-leve-saude/node_modules/jest-circus/build/run.js:316:40)
+    at async _runTest (/home/gustavomilan/teste-leve-saude/node_modules/jest-circus/build/run.js:252:3)
+    at async _runTestsForDescribeBlock (/home/gustavomilan/teste-leve-saude/node_modules/jest-circus/build/run.js:126:9)
+    at async _runTestsForDescribeBlock (/home/gustavomilan/teste-leve-saude/node_modules/jest-circus/build/run.js:121:9)
+    at async _runTestsForDescribeBlock (/home/gustavomilan/teste-leve-saude/node_modules/jest-circus/build/run.js:121:9)
+    at async run (/home/gustavomilan/teste-leve-saude/node_modules/jest-circus/build/run.js:71:3)
+    at async runAndTransformResultsToJestFormat (/home/gustavomilan/teste-leve-saude/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at async jestAdapter (/home/gustavomilan/teste-leve-saude/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at async runTestInternal (/home/gustavomilan/teste-leve-saude/node_modules/jest-runner/build/runTest.js:367:16)
+    at async runTest (/home/gustavomilan/teste-leve-saude/node_modules/jest-runner/build/runTest.js:444:34)]]></failure>
+    </testCase>
+  </file>
+  <file path="/home/gustavomilan/teste-leve-saude/src/schedule/service/schedule.service.spec.ts">
+    <testCase name="ScheduleService getSchedule should return all medics when no ID is provided" duration="5"/>
+    <testCase name="ScheduleService getSchedule  should return CustomError because dont find any medic " duration="8"/>
+    <testCase name="ScheduleService getSchedule should return a specific medic when ID is provided and found" duration="3"/>
+  </file>
+  <file path="/home/gustavomilan/teste-leve-saude/src/utils/response.spec.ts">
+    <testCase name="createControllerResponse should return statusCode and body" duration="6"/>
     <testCase name="createLambdaResponse should return statusCode and stringfied body" duration="1"/>
   </file>
 </testExecutions>
