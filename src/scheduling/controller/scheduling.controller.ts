@@ -46,7 +46,7 @@ export class SchedulingController {
     } catch (error) {
       // Vai verificar se algum CustomErros foi chamado no Service
       if (error instanceof CustomError) {
-        return createControllerResponse(error.statusCode, error.message)
+        return createControllerResponse(error.statusCode, error.message);
       }
 
       // Resposta padrão para erro interno de servidor

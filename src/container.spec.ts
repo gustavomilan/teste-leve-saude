@@ -1,57 +1,77 @@
-import { Container, getSchedule, postScheduling } from '../src/container'
+import { getSchedule, postScheduling } from '../src/container';
 
-const successResponse = {
-    statusCode: 200,
-    body: { any: 'any' },
+const controllerResponse = {
+  body: 'someData',
+  statusCode: 200,
 };
 
 const scheduleControllerMock = {
-   getSchedule: jest.fn(() => successResponse),
+  getSchedule: jest.fn(() => controllerResponse),
 };
 
 const schedulingControllerMock = {
-    postScheduling: jest.fn(() => successResponse),
- };
+  postScheduling: jest.fn(() => controllerResponse),
+};
 
+jest.mock('./schedule/controller/schedule.controller', () => {
+  return {
+    ScheduleController: jest.fn(() => scheduleControllerMock),
+  };
+});
+
+jest.mock('./scheduling/controller/scheduling.controller', () => {
+  return {
+    SchedulingController: jest.fn(() => schedulingControllerMock),
+  };
+});
 
 describe('Container', () => {
-    let container: Container;
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
 
-    beforeEach(() => {
-        container = new Container();
-        jest.clearAllMocks();
-    })
+  describe('getSchedule', () => {
+    it('should call ScheduleController.getSchedule with the provided params', async () => {
+      const response = await getSchedule({ queryStringParameters: 1 });
 
-    describe('getSchedule',() => {
-        it('should call ScheduleController.getSchedule with the provided params', async () => {
-            const params = { id: 1}
-            const response = await getSchedule({
-                queryStringParameters: params
-            });
+      expect(response).toStrictEqual({
+        statusCode: controllerResponse.statusCode,
+        body: JSON.stringify(controllerResponse.body),
+      });
+    });
 
-            expect(scheduleControllerMock.getSchedule).toHaveBeenCalledTimes(1)
-            expect(scheduleControllerMock.getSchedule).toHaveBeenCalledWith(params)
-            expect(response).toBe(successResponse)
-        })
-        
-    })
+    it('should call ScheduleController.getSchedule with empty params', async () => {
+      const response = await getSchedule({ queryStringParameters: {} });
 
-    describe('postScheduling',() => {
-        it('should call SchedulingController.postScheduling with the provided params', async () => {
-            const params = { 
-                medico_id: 1,
-                paciente_nome: 'Paciente Teste',
-                data_horario: '2024-10-05 09:00',   
-            }
+      expect(scheduleControllerMock.getSchedule).toHaveBeenCalledTimes(1);
+      expect(scheduleControllerMock.getSchedule).toHaveBeenCalledWith({});
+      expect(response).toStrictEqual({
+        statusCode: controllerResponse.statusCode,
+        body: JSON.stringify(controllerResponse.body),
+      });
+    });
+  });
 
-            const response = await postScheduling({
-                body: params
-            });
+  describe('postScheduling', () => {
+    it('should call SchedulingController.postScheduling with the provided params', async () => {
+      const params = {
+        medico_id: 1,
+        paciente_nome: 'Paciente Teste',
+        data_horario: '2024-10-05 09:00',
+      };
 
-            expect(schedulingControllerMock.postScheduling).toHaveBeenCalledTimes(1)
-            expect(schedulingControllerMock.postScheduling).toHaveBeenCalledWith(params)
-            expect(response).toBe(successResponse)
-        })
-        
-    })
-})
+      const response = await postScheduling({
+        body: JSON.stringify(params), // Passa `body` como string JSON
+      });
+
+      expect(schedulingControllerMock.postScheduling).toHaveBeenCalledTimes(1);
+      expect(schedulingControllerMock.postScheduling).toHaveBeenCalledWith(
+        params,
+      );
+      expect(response).toStrictEqual({
+        statusCode: controllerResponse.statusCode,
+        body: JSON.stringify(controllerResponse.body),
+      });
+    });
+  });
+});
